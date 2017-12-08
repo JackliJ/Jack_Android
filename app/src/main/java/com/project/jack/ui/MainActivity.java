@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project.jack.R;
+import com.project.jack.ui.rongcloud.TestActivity;
+import com.project.jack.ui.rongcloud.single.RYChatMessageActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,10 +47,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+//        btn_main_listView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intentL= new Intent(MainActivity.this, ListViewBarEditActivity.class);
+//                startActivity(intentL);
+//            }
+//        });
         btn_main_listView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentL= new Intent(MainActivity.this, ListViewBarEditActivity.class);
+                Intent intentL= new Intent(MainActivity.this, RYChatMessageActivity.class);
                 startActivity(intentL);
             }
         });

@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import com.project.jack.R;
 import com.project.jack.adapter.EmotionGridViewAdapter;
 import com.project.jack.adapter.EmotionPagerAdapter;
-import com.project.jack.emotionkeyboardview.EmojiIndicatorView;
+import com.project.jack.components.emotionkeyboardview.EmojiIndicatorView;
 import com.project.jack.utils.DisplayUtils;
 import com.project.jack.utils.EmotionUtils;
 import com.project.jack.utils.GlobalOnItemClickManagerUtils;

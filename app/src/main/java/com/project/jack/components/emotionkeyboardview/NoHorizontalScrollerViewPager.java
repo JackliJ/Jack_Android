@@ -1,4 +1,4 @@
-package com.project.jack.emotionkeyboardview;
+package com.project.jack.components.emotionkeyboardview;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

@@ -1,4 +1,4 @@
-package com.project.jack.emotionkeyboardview;
+package com.project.jack.components.emotionkeyboardview;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

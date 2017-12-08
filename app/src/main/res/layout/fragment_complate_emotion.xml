@@ -20,7 +20,7 @@
             />
     </LinearLayout>
 
-    <com.project.jack.emotionkeyboardview.EmojiIndicatorView
+    <com.project.jack.components.emotionkeyboardview.EmojiIndicatorView
         android:id="@+id/ll_point_group"
         android:layout_width="match_parent"
         android:layout_height="30dp"
