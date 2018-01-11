@@ -7,15 +7,22 @@
         android:id="@+id/btn_main_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="btn_main_editText"
-        android:layout_margin="20dp"/>
+        android:text="使用editext的表情键盘布局"
+        android:layout_marginLeft="20dp"/>
 
     <Button
         android:id="@+id/btn_main_listView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="btn_main_listView"
-        android:layout_margin="20dp"/>
+        android:text="带集合的表情键盘布局"
+        android:layout_marginLeft="20dp"/>
+
+    <Button
+        android:id="@+id/main_aly_im"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="阿里云IM"
+        android:layout_marginLeft="20dp"/>
 
 
 </LinearLayout>  

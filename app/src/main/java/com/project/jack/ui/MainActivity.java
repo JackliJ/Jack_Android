@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project.jack.R;
-import com.project.jack.ui.rongcloud.TestActivity;
+import com.project.jack.ui.alymessage.ui.AliYLoginActivity;
 import com.project.jack.ui.rongcloud.single.RYChatMessageActivity;
 
 
@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btn_main_editText;
     private Button btn_main_listView;
+    private Button aly_im_btnclick;
 
 
     @Override
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     {
         btn_main_editText= findViewById(R.id.btn_main_editText);
         btn_main_listView= findViewById(R.id.btn_main_listView);
+        aly_im_btnclick = findViewById(R.id.main_aly_im);
     }
 
     /**
@@ -59,6 +61,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentL= new Intent(MainActivity.this, RYChatMessageActivity.class);
                 startActivity(intentL);
+            }
+        });
+        aly_im_btnclick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentE= new Intent(MainActivity.this, AliYLoginActivity.class);
+                startActivity(intentE);
             }
         });
     }

@@ -2,4 +2,14 @@
     <string name="app_name">Jack App</string>
 
     <string name="btn_send">发送</string>
+
+    <string name="aly_login_login_null">请输入账户密码</string>
+
+
+
+
+    <!--全局actionbar标题  开始-->
+    <string name="left_back_title">返回</string>
+    <string name="AliYLoginActivity_title">阿里云登录</string>
+    <!--全局actionbar标题  结束-->
 </resources>
