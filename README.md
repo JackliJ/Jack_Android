@@ -40,6 +40,7 @@ local.properties
 2.新增侧滑返回 2017年12月8日14:33:51
 3.新增下拉刷新 2017年12月8日14:34:03
 4.新增融云单聊界面 2017年12月8日14:34:18
+5.mgrimintegration对融云进行了再封装，目前只封装到登录，后续开发将完成完全的解耦UI和逻辑层
 
 #### <i class="icon-trash"></i> Delete a document
 

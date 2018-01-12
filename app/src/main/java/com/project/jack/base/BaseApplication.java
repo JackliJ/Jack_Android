@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Environment;
 import android.text.TextUtils;
+
+import com.jack.mgrimintegration.rongcloud.interfaceshare.RongCloudIM;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
@@ -30,6 +32,9 @@ public class BaseApplication extends Application {
         super.onCreate();
         // SDK初始化（启动后台服务，若已经存在用户登录信息， SDK 将完成自动登录）
         NIMClient.init(this, getLoginInfo(), options());
+        //初始化融云
+        RongCloudIM.setRoogContext(getApplicationContext());
+        RongCloudIM.getInstance().init(getApplicationContext());
     }
 
     /**

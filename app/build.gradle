@@ -56,4 +56,5 @@ dependencies {
     // 全文检索服务需要
     compile 'com.netease.nimlib:lucene:4.4.0'
     implementation 'com.android.support:design:26.1.0'
+    implementation project(':mgrimintegration')
 }

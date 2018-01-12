@@ -5,6 +5,7 @@
       <module fileurl="file://E:\Jack_GitHub\Jack_Android.iml" filepath="E:\Jack_GitHub\Jack_Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/Jack_GitHub.iml" filepath="$PROJECT_DIR$/Jack_GitHub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mgrimintegration/mgrimintegration.iml" filepath="$PROJECT_DIR$/mgrimintegration/mgrimintegration.iml" />
     </modules>
   </component>
 </project>

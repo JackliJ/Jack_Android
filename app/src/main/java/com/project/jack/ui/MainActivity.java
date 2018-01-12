@@ -7,11 +7,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project.jack.R;
+import com.project.jack.base.BaseActivity;
 import com.project.jack.ui.alymessage.ui.AliYLoginActivity;
 import com.project.jack.ui.rongcloud.single.RYChatMessageActivity;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private Button btn_main_editText;
     private Button btn_main_listView;
