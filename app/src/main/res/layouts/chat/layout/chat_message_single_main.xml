@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/b1">
+
+        <TextView
+            android:id="@+id/btn_back"
+            style="@style/TitleBarBackStyle" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TitleBarTitleTextStyle"
+            android:text="@string/chat_browse_txt" />
+
+        <ImageView
+            android:id="@+id/btn_confirm"
+            style="@style/TitleBarRightStyle"
+            android:background="@drawable/comm_chatting_setting_chat" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/chat_ry_father"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/chat_message_chat_refresh"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/activity_chat_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/chat_recyclerview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#F2F7FA"
+                        android:scrollbarStyle="outsideOverlay"
+                        android:stackFromBottom="true">
+
+                    </android.support.v7.widget.RecyclerView>
+
+                    <LinearLayout
+                        android:id="@+id/chat_single_marking_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:background="@drawable/bg_linera_green_marking"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/chat_single_marking_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="20dp"
+                            android:textColor="#049500"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </android.support.v4.widget.SwipeRefreshLayout>
+
+
+            <LinearLayout
+                android:id="@+id/chat_copy_paste"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal"></LinearLayout>
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/chat_fr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

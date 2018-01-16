@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@android:id/background" android:drawable="@drawable/comm_voice" />
+    <item android:id="@android:id/progress" >
+        <!--如需要录制语音动画，替换此处图片-->
+        <clip android:drawable="@drawable/comm_voice" android:gravity="bottom" android:clipOrientation="vertical" />
+    </item>
+</layer-list>

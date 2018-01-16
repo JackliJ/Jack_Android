@@ -23,6 +23,16 @@ android {
             abiFilters "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res/layouts/chat',
+                    'src/main/res/layouts/main',
+                    'src/main/res'
+            ]
+        }
+    }
 }
 
 repositories {
@@ -55,6 +65,8 @@ dependencies {
     compile 'com.netease.nimlib:rts:4.4.0'
     // 全文检索服务需要
     compile 'com.netease.nimlib:lucene:4.4.0'
+    // EventBus https://github.com/greenrobot/EventBus
+    compile 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.android.support:design:26.1.0'
     implementation project(':mgrimintegration')
 }
