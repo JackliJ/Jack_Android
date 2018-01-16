@@ -30,6 +30,9 @@ public class Constant {
     public static final String EXTENSION_FIELD_31 = "31";//领取红包提醒
     public static final String EXTENSION_FIELD_32 = "32";//脉友代付提醒
 
+    public static final String CHAT_INTENT_BEAN = "CHAT_INTENT_BEAN";
+    public static final String CHAT_INTENT_BUNDLE = "bundle";
+
     public static final String isSendRefrsh = "isSendRefrsh";//是否定位刷新
 
     public static final String isMarking = "isMarking";//是否群聊被@

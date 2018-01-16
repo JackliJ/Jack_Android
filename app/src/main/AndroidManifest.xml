@@ -131,6 +131,14 @@
             android:label="网易云单聊页"></activity>
 
         <!--Activity 注册结束-->
+
+
+        <!--Chat 包目录 开始-->
+
+        <activity android:name=".chat.single.ChatMessageActivity"
+            android:screenOrientation="portrait"
+            android:label="单聊页面"/>
+        <!--Chat 包目录 结束-->
     </application>
 
 </manifest>
