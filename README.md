@@ -39,8 +39,8 @@ local.properties
 ----------
 
 > 主要界面
-> 
 
+----------
 
 ![enter image description here](https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_01.png)
 
