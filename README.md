@@ -41,15 +41,9 @@ local.properties
 > 主要界面
 
 ----------
-
-![enter image description here](https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_01.png)
-
-![enter image description here](https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_02.png)
-
-![enter image description here](https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_03.png)
-
-![enter image description here](https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_04.png)
-
-![enter image description here](https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_05.png)
-
-![enter image description here](https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_06.png)
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_01.png"/>
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_02.png"/>
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_03.png"/>
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_04.png"/>
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_05.png"/>
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_06.png"/>
