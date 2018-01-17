@@ -1,9 +1,10 @@
-package com.project.jack.chat.emotionkeyboardview;
+package com.project.jack.chat.emptionkeyboardview;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
+
 
 import com.project.jack.R;
 import com.project.jack.utils.DisplayUtils;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * Email shinezejian@163.com
  * Description:自定义表情底部指示器
  */
-public class EmojiIndicatorView extends LinearLayout {
+public class ChatEmojiIndicatorView extends LinearLayout {
 
     private Context mContext;
     private ArrayList<View> mImageViews ;//所有指示器集合
@@ -25,15 +26,15 @@ public class EmojiIndicatorView extends LinearLayout {
     private int pointSize ;//指示器的大小
     private int marginLeft;//间距
 
-    public EmojiIndicatorView(Context context) {
+    public ChatEmojiIndicatorView(Context context) {
         this(context,null);
     }
 
-    public EmojiIndicatorView(Context context, AttributeSet attrs) {
+    public ChatEmojiIndicatorView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public EmojiIndicatorView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ChatEmojiIndicatorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext=context;
         pointSize= DisplayUtils.dp2px(context,size);

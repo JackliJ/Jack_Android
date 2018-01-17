@@ -1,4 +1,4 @@
-package com.project.jack.chat.emotionkeyboardview;
+package com.project.jack.chat.emptionkeyboardview;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;
@@ -11,13 +11,13 @@ import android.view.MotionEvent;
  * Email shinezejian@163.com
  * Description:不可横向滑动的ViewPager
  */
-public class NoHorizontalScrollerViewPager extends ViewPager {
+public class ChatNoHorizontalScrollerViewPager extends ViewPager {
 
-    public NoHorizontalScrollerViewPager(Context context) {
+    public ChatNoHorizontalScrollerViewPager(Context context) {
         super(context);
     }
 
-    public NoHorizontalScrollerViewPager(Context context, AttributeSet attrs) {
+    public ChatNoHorizontalScrollerViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
     /**

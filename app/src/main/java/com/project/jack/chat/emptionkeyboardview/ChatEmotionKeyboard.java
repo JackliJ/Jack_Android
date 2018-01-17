@@ -1,4 +1,4 @@
-package com.project.jack.chat.emotionkeyboardview;
+package com.project.jack.chat.emptionkeyboardview;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -29,7 +29,7 @@ import com.project.jack.chat.single.fragment.ChatSingleEmotiomFragment;
  * description :源码来自开源项目https://github.com/dss886/Android-EmotionInputDetector
  * 本人仅做细微修改以及代码解析
  */
-public class EmotionKeyboard {
+public class ChatEmotionKeyboard {
 
     private static final String SHARE_PREFERENCE_NAME = "EmotionKeyboard";
     private static final String SHARE_PREFERENCE_SOFT_INPUT_HEIGHT = "soft_input_height";
@@ -41,7 +41,7 @@ public class EmotionKeyboard {
     private EditText mEditText;//
     private View mContentView;//内容布局view,即除了表情布局或者软键盘布局以外的布局，用于固定bar的高度，防止跳闪
 
-    private EmotionKeyboard() {
+    private ChatEmotionKeyboard() {
 
     }
 
@@ -51,8 +51,8 @@ public class EmotionKeyboard {
      * @param activity
      * @return
      */
-    public static EmotionKeyboard with(Activity activity) {
-        EmotionKeyboard emotionInputDetector = new EmotionKeyboard();
+    public static ChatEmotionKeyboard with(Activity activity) {
+        ChatEmotionKeyboard emotionInputDetector = new ChatEmotionKeyboard();
         emotionInputDetector.mActivity = activity;
         emotionInputDetector.mInputManager = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         emotionInputDetector.sp = activity.getSharedPreferences(SHARE_PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -65,7 +65,7 @@ public class EmotionKeyboard {
      * @param contentView
      * @return
      */
-    public EmotionKeyboard bindToContent(View contentView) {
+    public ChatEmotionKeyboard bindToContent(View contentView) {
         mContentView = contentView;
         return this;
     }
@@ -76,7 +76,7 @@ public class EmotionKeyboard {
      * @param editText
      * @return
      */
-    public EmotionKeyboard bindToEditText(EditText editText) {
+    public ChatEmotionKeyboard bindToEditText(EditText editText) {
         mEditText = editText;
         mEditText.requestFocus();
         mEditText.setOnTouchListener(new View.OnTouchListener() {
@@ -108,9 +108,9 @@ public class EmotionKeyboard {
      * @param btn_longvoice 语音发送区域
      * @return
      */
-    public EmotionKeyboard bindToEmotionButton(View emotionButton, final LinearLayout rebotton,
-                                               final LinearLayout re_top, final Button btn_longvoice
-                                                ,final ImageButton vImgAdd) {
+    public ChatEmotionKeyboard bindToEmotionButton(View emotionButton, final LinearLayout rebotton,
+                                                   final LinearLayout re_top, final Button btn_longvoice
+                                                , final ImageButton vImgAdd) {
         emotionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +162,7 @@ public class EmotionKeyboard {
      * @param emotionButton 表情按钮
      * @return
      */
-    public EmotionKeyboard bindToViewButton(View emotionButton, final LinearLayout ll_emotion_layout, final ImageButton vImgAdd) {
+    public ChatEmotionKeyboard bindToViewButton(View emotionButton, final LinearLayout ll_emotion_layout, final ImageButton vImgAdd) {
         emotionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -215,13 +215,13 @@ public class EmotionKeyboard {
      * @param emotionView
      * @return
      */
-    public EmotionKeyboard setEmotionView(View emotionView) {
+    public ChatEmotionKeyboard setEmotionView(View emotionView) {
         mEmotionLayout = emotionView;
         return this;
     }
 
 
-    public EmotionKeyboard build() {
+    public ChatEmotionKeyboard build() {
         //设置软件盘的模式：SOFT_INPUT_ADJUST_RESIZE  这个属性表示Activity的主窗口总是会被调整大小，从而保证软键盘显示空间。
         //从而方便我们计算软件盘的高度
         mActivity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN |

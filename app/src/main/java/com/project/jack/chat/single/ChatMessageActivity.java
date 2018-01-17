@@ -266,6 +266,14 @@ public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefres
     }
 
     /**
+     * 拦截返回键
+     */
+    @Override
+    public void onBackPressed() {
+        mEmotionMainFragment.isShowInterceptBackPress();
+    }
+
+    /**
      * 发送方法
      * @param text       发送文本
      * @param UserName   发送名称

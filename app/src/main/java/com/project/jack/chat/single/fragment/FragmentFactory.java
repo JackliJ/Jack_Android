@@ -3,8 +3,6 @@ package com.project.jack.chat.single.fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-import com.project.jack.ui.fragment.EmotiomComplateFragment;
-
 /**
  * Created by zejian
  * Time  16/1/7 上午11:40
@@ -46,7 +44,7 @@ public class FragmentFactory {
 
         bundle.putInt(FragmentFactory.EMOTION_MAP_TYPE,emotionType);
         bundle.putBoolean(EMOTION_CLASSIC_EXTENDED,classic_extended);
-        EmotiomComplateFragment fragment= EmotiomComplateFragment.newInstance(EmotiomComplateFragment.class,bundle);
+        ChatEmotiomComplateFragment fragment= ChatEmotiomComplateFragment.newInstance(ChatEmotiomComplateFragment.class,bundle);
 
         return fragment;
     }

@@ -32,14 +32,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.jack.R;
-import com.project.jack.adapter.HorizontalRecyclerviewAdapter;
-import com.project.jack.adapter.NoHorizontalScrollerVPAdapter;
+import com.project.jack.chat.adapter.ChatHorizontalRecyclerviewAdapter;
+import com.project.jack.chat.adapter.ChatNoHorizontalScrollerVPAdapter;
 import com.project.jack.chat.base.ChatBaseFragment;
-import com.project.jack.chat.emotionkeyboardview.EmotionKeyboard;
-import com.project.jack.chat.emotionkeyboardview.NoHorizontalScrollerViewPager;
+import com.project.jack.chat.emptionkeyboardview.ChatNoHorizontalScrollerViewPager;
 import com.project.jack.chat.eventbus.ChatVoiceCloseEventBus;
+import com.project.jack.chat.model.ImageModel;
 import com.project.jack.chat.util.AudioRecoderUtils;
 import com.project.jack.chat.util.BroadCastReceiverConstant;
+import com.project.jack.chat.util.ChatGlobalOnItemClickManagerUtils;
 import com.project.jack.chat.util.Constant;
 import com.project.jack.chat.util.EmotionUtils;
 import com.project.jack.chat.util.FileUtils;
@@ -49,10 +50,6 @@ import com.project.jack.chat.util.SpanStringUtils;
 import com.project.jack.chat.util.TimeUtils;
 import com.project.jack.chat.util.Utils;
 import com.project.jack.chat.weight.MgeToast;
-import com.project.jack.model.ImageModel;
-import com.project.jack.ui.fragment.EmotiomComplateFragment;
-import com.project.jack.ui.fragment.EmotionMainFragment;
-import com.project.jack.utils.GlobalOnItemClickManagerUtils;
 import com.project.jack.utils.SharedPreferencedUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -81,9 +78,9 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
     private int CurrentPosition = 0;
     //底部水平tab
     private RecyclerView recyclerview_horizontal;
-    private HorizontalRecyclerviewAdapter horizontalRecyclerviewAdapter;
+    private ChatHorizontalRecyclerviewAdapter horizontalRecyclerviewAdapter;
     //表情面板
-    private EmotionKeyboard mEmotionKeyboard;
+    private ChatEmotionKeyboard mEmotionKeyboard;
     private EditText bar_edit_text;
     private Button bar_btn_send;
     private LinearLayout rl_editbar_bg;
@@ -91,7 +88,7 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
     private View contentView;
     private Bundle args;
     //不可横向滚动的ViewPager
-    private NoHorizontalScrollerViewPager viewPager;
+    private ChatNoHorizontalScrollerViewPager viewPager;
     //是否绑定当前Bar的编辑框,默认true,即绑定。
     //false,则表示绑定contentView,此时外部提供的contentView必定也是EditText
     private boolean isBindToBarEditText = true;
@@ -160,7 +157,7 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main_emotions, container, false);
         context = getActivity();
-        isHidenBarEditTextAndBtn = args.getBoolean(EmotionMainFragment.HIDE_BAR_EDITTEXT_AND_BTN);
+        isHidenBarEditTextAndBtn = args.getBoolean(ChatSingleEmotiomFragment.HIDE_BAR_EDITTEXT_AND_BTN);
         mHuanxinID = args.getString(Constant.MEG_INTNT_CHATMESSAGE_HXID);
         mOtherUsername = args.getString(Constant.MEG_INTNT_CHATMESSAGE_OTHERUSERNAME);
         mOtherUid = args.getString(Constant.MEG_INTNT_CHATMESSAGE_OTHRTUID);
@@ -224,10 +221,10 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
 
 
         //获取判断绑定对象的参数
-        isBindToBarEditText = args.getBoolean(EmotionMainFragment.BIND_TO_EDITTEXT);
+        isBindToBarEditText = args.getBoolean(ChatSingleEmotiomFragment.BIND_TO_EDITTEXT);
         initView(rootView);
         //绑定表情按钮
-        mEmotionKeyboard = EmotionKeyboard.with(getActivity())
+        mEmotionKeyboard = ChatEmotionKeyboard.with(getActivity())
                 .setEmotionView(rootView.findViewById(R.id.ll_emotion_layout))
                 .bindToContent(contentView)
                 .bindToEditText(!isBindToBarEditText ? ((EditText) contentView) : ((EditText) rootView.findViewById(R.id.bar_edit_text)))
@@ -236,7 +233,7 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
         initDatas();
 
         //绑定模块布局
-        EmotionKeyboard.with(getActivity())
+        ChatEmotionKeyboard.with(getActivity())
                 .setEmotionView(rootView.findViewById(R.id.ll_devoicefrls))
                 .bindToContent(contentView)
                 .bindToEditText(!isBindToBarEditText ? ((EditText) contentView) : ((EditText) rootView.findViewById(R.id.bar_edit_text)))
@@ -244,7 +241,7 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
                 .build();
 
         //创建全局监听
-        GlobalOnItemClickManagerUtils globalOnItemClickManager = GlobalOnItemClickManagerUtils.getInstance(getActivity());
+        ChatGlobalOnItemClickManagerUtils globalOnItemClickManager = ChatGlobalOnItemClickManagerUtils.getInstance(getActivity());
 
         if (isBindToBarEditText) {
             //绑定当前Bar的编辑框
@@ -368,7 +365,7 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
      * 初始化view控件
      */
     protected void initView(View rootView) {
-        viewPager = (NoHorizontalScrollerViewPager) rootView.findViewById(R.id.vp_emotionview_layout);
+        viewPager = (ChatNoHorizontalScrollerViewPager) rootView.findViewById(R.id.vp_emotionview_layout);
         facelayout = (LinearLayout) rootView.findViewById(R.id.face_layouts);
         recyclerview_horizontal = (RecyclerView) rootView.findViewById(R.id.recyclerview_horizontal);
         rebotton = (LinearLayout) rootView.findViewById(R.id.ll_devoicefrls);
@@ -527,12 +524,12 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
         SharedPreferencedUtils.setInteger(getActivity(), CURRENT_POSITION_FLAG, CurrentPosition);
 
         //底部tab
-        horizontalRecyclerviewAdapter = new HorizontalRecyclerviewAdapter(getActivity(), list);
+        horizontalRecyclerviewAdapter = new ChatHorizontalRecyclerviewAdapter(getActivity(), list);
         recyclerview_horizontal.setHasFixedSize(true);//使RecyclerView保持固定的大小,这样会提高RecyclerView的性能
         recyclerview_horizontal.setAdapter(horizontalRecyclerviewAdapter);
         recyclerview_horizontal.setLayoutManager(new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false));
         //初始化recyclerview_horizontal监听器
-        horizontalRecyclerviewAdapter.setOnClickItemListener(new HorizontalRecyclerviewAdapter.OnClickItemListener() {
+        horizontalRecyclerviewAdapter.setOnClickItemListener(new ChatHorizontalRecyclerviewAdapter.OnClickItemListener() {
             @Override
             public void onItemClick(View view, int position, List<ImageModel> datas) {
                 //获取先前被点击tab
@@ -562,11 +559,11 @@ public class ChatSingleEmotiomFragment extends ChatBaseFragment implements View.
         //创建fragment的工厂类
         FragmentFactory factory = FragmentFactory.getSingleFactoryInstance();
         //创建修改实例
-        EmotiomComplateFragment f1 = (EmotiomComplateFragment) factory.getFragment(EmotionUtils.EMOTTON_AM_TYPE, false);
+        ChatEmotiomComplateFragment f1 = (ChatEmotiomComplateFragment) factory.getFragment(EmotionUtils.EMOTTON_AM_TYPE, false);
         fragments.add(f1);
-        EmotiomComplateFragment f2 = (EmotiomComplateFragment) factory.getFragment(EmotionUtils.EMOTION_CLASSIC_TYPE, true);
+        ChatEmotiomComplateFragment f2 = (ChatEmotiomComplateFragment) factory.getFragment(EmotionUtils.EMOTION_CLASSIC_TYPE, true);
         fragments.add(f2);
-        NoHorizontalScrollerVPAdapter adapter = new NoHorizontalScrollerVPAdapter(getActivity().getSupportFragmentManager(), fragments);
+        ChatNoHorizontalScrollerVPAdapter adapter = new ChatNoHorizontalScrollerVPAdapter(getActivity().getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapter);
     }
 
