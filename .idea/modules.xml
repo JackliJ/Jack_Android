@@ -5,7 +5,9 @@
       <module fileurl="file://E:\Jack_GitHub\Jack_Android.iml" filepath="E:\Jack_GitHub\Jack_Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/Jack_GitHub.iml" filepath="$PROJECT_DIR$/Jack_GitHub.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/imdatautil/imdatautil.iml" filepath="$PROJECT_DIR$/imdatautil/imdatautil.iml" />
       <module fileurl="file://$PROJECT_DIR$/mgrimintegration/mgrimintegration.iml" filepath="$PROJECT_DIR$/mgrimintegration/mgrimintegration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mgrimintegration_hx/mgrimintegration_hx.iml" filepath="$PROJECT_DIR$/mgrimintegration_hx/mgrimintegration_hx.iml" />
     </modules>
   </component>
 </project>

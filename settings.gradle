@@ -1,1 +1,1 @@
-include ':app', ':mgrimintegration'
+include ':app', ':mgrimintegration', ':imdatautil', ':mgrimintegration_hx'

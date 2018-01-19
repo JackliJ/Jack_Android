@@ -4,7 +4,6 @@ android {
     compileSdkVersion 25
     buildToolsVersion '26.0.2'
 
-
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 25
@@ -12,10 +11,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
-            //融云CallLib 仅支持两种 进行过滤
-            abiFilters "armeabi-v7a","x86"
-        }
+
     }
 
     buildTypes {
@@ -25,21 +21,21 @@ android {
         }
     }
 
-    sourceSets{
-        main {
-            res.srcDirs = ['res']
-            jniLibs.srcDirs = ['libs']
-        }
-    }
+    useLibrary 'org.apache.http.legacy'
+
 
 }
 
+repositories {
+    maven { url "https://raw.githubusercontent.com/HyphenateInc/Hyphenate-SDK-Android/master/repository" }
+}
+
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:recyclerview-v7:25.3.1'
-    //基础组件
-    compile files('libs/Rong_IMLib.jar')
-    implementation files('libs/commons-codec-1.4.jar')
-    implementation project(':imdatautil')
-    implementation project(':mgrimintegration_hx')
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    //Optional compile for GCM (Google Cloud Messaging).
+    compile 'com.google.android.gms:play-services-gcm:9.4.0'
+    compile 'com.hyphenate:hyphenate-sdk:3.3.0'
+
 }

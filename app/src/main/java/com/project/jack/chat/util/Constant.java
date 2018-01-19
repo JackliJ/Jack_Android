@@ -1,11 +1,15 @@
 package com.project.jack.chat.util;
 
+import jack.project.com.imdatautil.util.IMConfig;
+
 /**
  * Created by www.lijin@foxmail.com on 2017/10/21 0021.
  * <br/>
  * 常量管理
  */
 public class Constant {
+
+    public static final IMConfig.ChatEPackageType config = IMConfig.ChatEPackageType.IM_HuanXin;
 
     //扩展字段类型 开始
     public static final String EXTENSION_FIELD_01 = "1";

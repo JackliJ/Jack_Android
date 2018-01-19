@@ -36,6 +36,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jack.project.com.imdatautil.IMDataUtil;
+import jack.project.com.imdatautil.util.IMConfig;
 
 /**
  * Create by www.lijin@foxmail.com on 2018/1/12 0012.
@@ -221,14 +223,6 @@ public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefres
 
 
     /**
-     * 下拉刷新(google)
-     */
-    @Override
-    public void onRefresh() {
-
-    }
-
-    /**
      * 初始化布局数据
      */
     private void initData() {
@@ -271,6 +265,14 @@ public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefres
     @Override
     public void onBackPressed() {
         mEmotionMainFragment.isShowInterceptBackPress();
+    }
+
+    /**
+     * 下拉刷新(google)
+     */
+    @Override
+    public void onRefresh() {
+
     }
 
     /**

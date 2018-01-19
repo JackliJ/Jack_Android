@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.project.jack.R;
 import com.project.jack.base.BaseActivity;
+import com.project.jack.chat.*;
 import com.project.jack.chat.model.single.ChatMessageBean;
 import com.project.jack.chat.single.ChatMessageActivity;
 import com.project.jack.chat.util.Constant;
@@ -79,21 +80,21 @@ public class MainActivity extends BaseActivity {
         btn_main_btn_im.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChatMessageBean chatMessageBean = new ChatMessageBean();
-                chatMessageBean.setChatUUID("123456");
-                chatMessageBean.setChatUserID("78910");
-                chatMessageBean.setChatUserName("花儿那么红");
-                chatMessageBean.setChatUserNote("阿花");
-                chatMessageBean.setChatUserAvatar("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516103998446&di=27f76e0ea7711b38cc75db68e74edd53&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fzhidao%2Fwh%253D600%252C800%2Fsign%3Da3fc2c12c9ea15ce41bbe80f863016cb%2Fa08b87d6277f9e2fa7cf5f9f1f30e924b999f3ab.jpg");
-                chatMessageBean.setChatOtherUUID("4165148");
-                chatMessageBean.setChatOtherUID("12546");
-                chatMessageBean.setChatOtherUserName("独孤阿飞");
-                chatMessageBean.setChatOtherUserNote("阿飞");
-                chatMessageBean.setChatOtherUserAvatar("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516104069170&di=ec10d9a2ed764110d62c453687518df0&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fzhidao%2Fwh%253D450%252C600%2Fsign%3D99d79f68b11c8701d6e3bae2124fb219%2Fc2cec3fdfc039245612cc0838594a4c27c1e25a4.jpg");
-                Intent intentE= new Intent(MainActivity.this, ChatMessageActivity.class);
-                Bundle b = new Bundle();
-                b.putSerializable(Constant.CHAT_INTENT_BEAN,chatMessageBean);
-                intentE.putExtra(Constant.CHAT_INTENT_BUNDLE,b);
+//                ChatMessageBean chatMessageBean = new ChatMessageBean();
+//                chatMessageBean.setChatUUID("123456");
+//                chatMessageBean.setChatUserID("78910");
+//                chatMessageBean.setChatUserName("花儿那么红");
+//                chatMessageBean.setChatUserNote("阿花");
+//                chatMessageBean.setChatUserAvatar("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516103998446&di=27f76e0ea7711b38cc75db68e74edd53&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fzhidao%2Fwh%253D600%252C800%2Fsign%3Da3fc2c12c9ea15ce41bbe80f863016cb%2Fa08b87d6277f9e2fa7cf5f9f1f30e924b999f3ab.jpg");
+//                chatMessageBean.setChatOtherUUID("4165148");
+//                chatMessageBean.setChatOtherUID("12546");
+//                chatMessageBean.setChatOtherUserName("独孤阿飞");
+//                chatMessageBean.setChatOtherUserNote("阿飞");
+//                chatMessageBean.setChatOtherUserAvatar("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516104069170&di=ec10d9a2ed764110d62c453687518df0&imgtype=0&src=http%3A%2F%2Fh.hiphotos.baidu.com%2Fzhidao%2Fwh%253D450%252C600%2Fsign%3D99d79f68b11c8701d6e3bae2124fb219%2Fc2cec3fdfc039245612cc0838594a4c27c1e25a4.jpg");
+                Intent intentE= new Intent(MainActivity.this, com.project.jack.chat.LoginActivity.class);
+//                Bundle b = new Bundle();
+//                b.putSerializable(Constant.CHAT_INTENT_BEAN,chatMessageBean);
+//                intentE.putExtra(Constant.CHAT_INTENT_BUNDLE,b);
                 startActivity(intentE);
             }
         });

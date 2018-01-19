@@ -138,6 +138,9 @@
         <activity android:name=".chat.single.ChatMessageActivity"
             android:screenOrientation="portrait"
             android:label="单聊页面"/>
+        <activity android:name=".chat.LoginActivity"
+            android:screenOrientation="portrait"
+            android:label="登录页"></activity>
         <!--Chat 包目录 结束-->
     </application>
 

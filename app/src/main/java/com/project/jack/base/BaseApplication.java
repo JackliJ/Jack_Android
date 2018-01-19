@@ -20,6 +20,12 @@ import com.project.jack.aly.preferences.AlyLoginPreferences;
 import com.project.jack.ui.MainActivity;
 import java.io.IOException;
 
+import jack.project.com.imdatautil.IMDataUtil;
+import jack.project.com.imdatautil.callback.ImLoginCallback;
+import jack.project.com.imdatautil.util.IMConfig;
+import jack.project.mgrimintegration_hx.IMInitialize_HX;
+import jack.project.mgrimintegration_hx.util.IMInitializeUtil_HX;
+
 
 /**
  * Created by Administrator on 2017/12/8 0008.
@@ -35,6 +41,8 @@ public class BaseApplication extends Application {
         //初始化融云
         RongCloudIM.setRoogContext(getApplicationContext());
         RongCloudIM.getInstance().init(getApplicationContext());
+        //初始化环信
+        IMInitialize_HX.init(getApplicationContext());
     }
 
     /**
