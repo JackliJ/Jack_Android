@@ -26,22 +26,24 @@ local.properties
 
 #### <i class="icon-pencil"></i> 更新日志
 
-1.新建项目 2017年12月7日17:53:59/n
-2.新增侧滑返回 2017年12月8日14:33:51/n
-3.新增下拉刷新 2017年12月8日14:34:03/n
-4.新增融云单聊界面 2017年12月8日14:34:18/n
-5.mgrimintegration对融云进行了再封装，目前只封装到登录，后续开发将完成完全的解耦UI和逻辑层/n
-update: 2018年1月17日11:46:09 /n
-1.更新表情键盘UI /n
-2.新增聊天扩展布局/n
-3.更新表情/n
-4.修复相关BUG/n
+ - 新建项目 2017年12月7日17:53:59/n
+ - 新增侧滑返回 2017年12月8日14:33:51/n
+ - 新增下拉刷新 2017年12月8日14:34:03/n
+ - 新增融云单聊界面 2017年12月8日14:34:18/n
+ - mgrimintegration对融云进行了再封装，目前只封装到登录，后续开发将完成完全的解耦UI和逻辑层/n
+ - 更新表情键盘UI /n
+ - 新增聊天扩展布局/n
+ - 更新表情/n
+ - 修复相关BUG/n
 
-#### <i class="icon-trash"></i> Delete a document
+----------
 
+> 主要界面
 
-You can save the current document to a file by clicking <i class="icon-hdd"></i> **Export to disk** from the <i class="icon-provider-stackedit"></i> menu panel.
+----------
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_01.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_02.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_03.png"/>
 
-> **Tip:** Check out the [<i class="icon-upload"></i> Publish a document](#publish-a-document) section for a description of the different output formats.
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_04.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_05.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_06.png"/>
+
 
 
