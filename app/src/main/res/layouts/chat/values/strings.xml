@@ -413,4 +413,9 @@
     <string name="chat_group_marking_all">所有人</string>
     <string name="qrcode_text3">保存成功，以保存至：</string>
 
+    <string name="chats_message">会话</string>
+    <string name="chats_frends">朋友</string>
+    <string name="chats_group">群组</string>
+
+
 </resources>

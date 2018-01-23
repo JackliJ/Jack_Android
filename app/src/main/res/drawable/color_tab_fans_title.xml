@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--首页 tab host 底部按钮 文字颜色-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/T8" android:state_pressed="false" android:state_selected="false"/>
+    <item android:color="@color/T1" android:state_pressed="true" android:state_selected="false"/>
+    <item android:color="@color/T1" android:state_pressed="false" android:state_selected="true"/>
+    <item android:color="@color/T8" android:state_pressed="true" android:state_selected="true"/>
+</selector>

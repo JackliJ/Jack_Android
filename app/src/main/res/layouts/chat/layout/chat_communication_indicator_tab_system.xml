@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/b6">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:id="@+id/relativeLayout6">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@drawable/color_tab_fans_title"
+                android:textSize="@dimen/sp_15"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_line"
+            android:layout_width="40dp"
+            android:layout_height="2dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"
+            android:background="@color/T1"/>
+
+        <TextView
+            android:id="@+id/tv_round"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/relativeLayout6"
+            android:layout_toRightOf="@+id/relativeLayout6"
+            android:background="@drawable/bg_oval_red_smail"
+            android:gravity="center"
+            android:visibility="gone"
+            android:textColor="@color/b6" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.project.jack.chat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -8,6 +9,7 @@ import android.widget.EditText;
 
 import com.project.jack.R;
 import com.project.jack.chat.base.ChatBaseActivity;
+import com.project.jack.chat.message.ChatsActivity;
 import com.project.jack.chat.util.Constant;
 import com.project.jack.chat.weight.MgeToast;
 
@@ -60,6 +62,7 @@ public class LoginActivity extends ChatBaseActivity implements View.OnClickListe
                                 @Override
                                 public void run() {
                                     MgeToast.showSuccessToast(LoginActivity.this,"success");
+                                    startActivity(new Intent(LoginActivity.this, ChatsActivity.class));
                                 }
                             });
                         }
