@@ -104,6 +104,13 @@
         <item name="android:textSize">@dimen/sp_15</item>
     </style>
 
+    <!-- 分割栏 样式 -->
+    <style name="DividerStyle">
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/d1</item>
+    </style>
+
     <!--&lt;!&ndash;脉果儿样式，注意每一项都不能少&ndash;&gt;-->
     <!--<style name="picture.MGR.style" parent="Theme.AppCompat.Light.DarkActionBar">-->
         <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->

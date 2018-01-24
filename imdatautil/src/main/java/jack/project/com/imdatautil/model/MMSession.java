@@ -25,6 +25,15 @@ public class MMSession implements Serializable {
     private MMessage.Type MMSType;//消息类型
     private MMessage.Direct MMSIsReceiveSend;//是发送方(true) 还是 接收方(false)
     private MMessage.ChatType MMSChatType;//聊天类型
+    public String MsgTypeString;//扩展参数类型  可为null 只有在MsgType 为TEXT_TYPE时才具有实际意义
+
+    public String getMsgTypeString() {
+        return MsgTypeString;
+    }
+
+    public void setMsgTypeString(String msgTypeString) {
+        MsgTypeString = msgTypeString;
+    }
 
     public String getMMSUid() {
         return MMSUid;

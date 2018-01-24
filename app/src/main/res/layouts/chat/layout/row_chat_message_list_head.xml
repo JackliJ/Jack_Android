@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/b5">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/rl_secretary"
+        android:layout_width="match_parent"
+        android:layout_height="62dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:orientation="horizontal">
+            <com.project.jack.chat.weight.ShapedImageView
+                android:id="@+id/iv_secretary"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/comm_messages_service"
+                app:shape_mode="circle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_secretary"
+                android:textColor="@color/T1"
+                android:layout_marginLeft="15dp"
+                android:textSize="@dimen/sp_15"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_secretary_message_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_11"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/message_oval_red"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <View
+        style="@style/DividerStyle"
+        android:layout_marginLeft="75dp"></View>
+
+    <RelativeLayout
+        android:id="@+id/rl_frend_circle"
+        android:onClick="onClick"
+        android:layout_width="match_parent"
+        android:layout_height="62dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:orientation="horizontal">
+            <com.project.jack.chat.weight.ShapedImageView
+                android:id="@+id/iv_frend_circle"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/comm_messages_friends"
+                app:shape_mode="circle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_frend_circle"
+                android:textColor="@color/T8"
+                android:layout_marginLeft="15dp"
+                android:textSize="@dimen/sp_15"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_frend_circle_message_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_11"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/message_oval_red"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_frend_system"
+        android:onClick="onClick"
+        android:background="@color/T12"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="12dp"
+            android:orientation="horizontal">
+            <com.project.jack.chat.weight.ShapedImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/comm_messages_inform"
+                app:shape_mode="circle" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/system_title_Notice"
+                android:textColor="@color/T8"
+                android:layout_marginLeft="15dp"
+                android:textSize="@dimen/sp_15"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/system_message_convertion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_11"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:visibility="gone"
+            android:background="@drawable/message_oval_red"/>
+    </RelativeLayout>
+    <View
+        style="@style/DividerStyle"
+        android:layout_marginLeft="75dp"></View>
+</LinearLayout>

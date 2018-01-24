@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PercentLayout_Layout">
+        <attr name="layout_widthPercent" format="string" /> <!--  百分比表示宽度  -->
+        <attr name="layout_heightPercent" format="string" /><!-- 百分比表示高度 注意，listview因为没有高度，所有需要用它的宽度来表示-->
+
+        <attr name="layout_marginPercent" format="string" /><!-- 百分比表示View之间的间隔  -->
+        <attr name="layout_marginLeftPercent" format="string" /><!-- 百分比表示左边的间隔  -->
+        <attr name="layout_marginTopPercent" format="string" /><!-- 百分比表示顶部的间隔  -->
+        <attr name="layout_marginRightPercent" format="string" /><!-- 百分比表示右边的间隔  -->
+        <attr name="layout_marginBottomPercent" format="string" /><!-- 百分比表示底部的间隔  -->
+        <attr name="layout_marginStartPercent" format="string" /><!--  百分比表示距离第一个View之间的间隔 -->
+        <attr name="layout_marginEndPercent" format="string" /><!-- 百分比表示距离最后一个View之间的间隔  -->
+
+        <attr name="layout_textSizePercent" format="string" /><!--  百分比表示字体大小 -->
+
+        <attr name="layout_maxWidthPercent" format="string" /><!-- 百分比表示区域的最大宽度  -->
+        <attr name="layout_maxHeightPercent" format="string" /><!--  百分比表示区域的最大高度 -->
+        <attr name="layout_minWidthPercent" format="string" /><!-- 百分比表示区域的最小宽度  -->
+        <attr name="layout_minHeightPercent" format="string" /><!--  百分比表示区域的最小高度 -->
+
+        <attr name="layout_paddingPercent" format="string" /><!--  百分比表示指定布局与子布局的间距 -->
+        <attr name="layout_paddingTopPercent" format="string" /><!--  百分比表示指定布局上边与子布局的间距 -->
+        <attr name="layout_paddingBottomPercent" format="string" /><!--  百分比表示指定布局下边与子布局的间距 -->
+        <attr name="layout_paddingLeftPercent" format="string" /><!--  百分比表示指定布局左边与子布局的间距 -->
+        <attr name="layout_paddingRightPercent" format="string" /><!-- 百分比表示指定布局右边与子布局的间距  -->
+    </declare-styleable>
+
+    <!--仿ios的滑动开关-->
+    <declare-styleable name="SwitchButton">
+        <attr name="sb_shadow_radius" format="reference|dimension" />       <!--阴影半径-->
+        <attr name="sb_shadow_offset" format="reference|dimension" />       <!--阴影偏移-->
+        <attr name="sb_shadow_color" format="reference|color" />            <!--阴影颜色-->
+        <attr name="sb_uncheck_color" format="reference|color" />           <!--关闭颜色-->
+        <attr name="sb_checked_color" format="reference|color" />           <!--开启颜色-->
+        <attr name="sb_border_width" format="reference|dimension" />        <!--边框宽度-->
+        <attr name="sb_checkline_color" format="reference|color" />         <!--开启指示器颜色-->
+        <attr name="sb_checkline_width" format="reference|dimension" />     <!--开启指示器线宽-->
+        <attr name="sb_uncheckcircle_color" format="reference|color" />     <!--关闭指示器颜色-->
+        <attr name="sb_uncheckcircle_width" format="reference|dimension" /> <!--关闭指示器线宽-->
+        <attr name="sb_uncheckcircle_radius" format="reference|dimension" /><!--关闭指示器半径-->
+        <attr name="sb_checked" format="reference|boolean" />               <!--是否选中-->
+        <attr name="sb_shadow_effect" format="reference|boolean" />         <!--是否启用阴影-->
+        <attr name="sb_effect_duration" format="reference|integer" />       <!--动画时间，默认300ms-->
+        <attr name="sb_button_color" format="reference|color" />            <!--按钮颜色-->
+        <attr name="sb_show_indicator" format="reference|boolean" />        <!--是否显示指示器，默认true：显示-->
+        <attr name="sb_background" format="reference|color" />              <!--背景色，默认白色-->
+        <attr name="sb_enable_effect" format="reference|boolean" />         <!--是否启用特效，默认true-->
+    </declare-styleable>
+
+
+    <!--脉友印象&评价 的标签样式 属性值-->
+    <declare-styleable name="WarpLinearLayout">
+        <attr name="grivate" format="enum"><!--对齐方式 !-->
+            <enum name="right" value="0"></enum>
+            <enum name="left" value="1"></enum>
+            <enum name="center" value="2"></enum>
+        </attr>
+        <attr name="horizontal_Space" format="dimension"></attr>
+        <attr name="vertical_Space" format="dimension"></attr>
+        <attr name="isFull" format="boolean"></attr>
+    </declare-styleable>
+
+    <declare-styleable name="ShapedImageView">
+        <attr name="shape_mode" format="enum">
+            <enum name="round_rect" value="1" />
+            <enum name="circle" value="2" />
+        </attr>
+        <attr name="round_radius" format="dimension" />
+
+        <attr name="stroke_width" format="dimension" />
+        <attr name="stroke_color" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="ElasticProgressBar">
+        <attr name="back_line_color" format="color" />
+        <attr name="front_line_color" format="color" />
+        <attr name="bubble_color" format="color" />
+        <attr name="text_color" format="color" />
+    </declare-styleable>
+
+</resources>
