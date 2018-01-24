@@ -49,5 +49,7 @@ local.properties
 
 <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_04.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_05.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_06.png"/>
 
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_07.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_08.png"/>
+
 
 
