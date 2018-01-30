@@ -20,6 +20,7 @@ import android.net.Uri;
 import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -48,6 +49,18 @@ import java.util.regex.Pattern;
 public class Utils {
 
     private final static String TAG = "Utils_TAG";
+
+    /**
+     * 将sp转换为px
+     *
+     * @param context
+     * @param sp
+     * @return
+     */
+    public static float TranslateSpiToPx(Context context, float sp) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp,
+                context.getResources().getDisplayMetrics());
+    }
 
     /**
      * 检测当前网络是否可用

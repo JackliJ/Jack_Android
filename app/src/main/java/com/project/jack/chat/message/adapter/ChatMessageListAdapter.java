@@ -113,7 +113,7 @@ public class ChatMessageListAdapter extends RecyclerView.Adapter<ChatMessageList
                             //由于notifyItemRangeChanged是多线程的 快速删除也可能导致越界，上面的解决方式不够优雅 可以参考
                             try {
                                 //删除会话
-                                IMDataUtil.DeleteSession(mmSessions.get(mPosition).getMMSUUid());
+                                IMDataUtil.DeleteSession(Constant.config,mmSessions.get(mPosition).getMMSUUid());
                                 mmSessions.remove(holder.getAdapterPosition() - 1);
                                 if(mmSessions.size() == 1){
                                     notifyDataSetChanged();

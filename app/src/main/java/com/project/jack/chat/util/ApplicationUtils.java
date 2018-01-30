@@ -16,6 +16,79 @@ import com.project.jack.R;
 
 public class ApplicationUtils {
 
+
+    /**
+     * 获取男女性别的图标
+     *
+     * @param status
+     * @param view
+     */
+    public static void GetgenderStatusResource(int status, ImageView view) {
+        switch (status) {
+            case 1: {//男
+                view.setImageResource(R.drawable.my_homepage_man);
+            }
+            break;
+            case 2: {// 女
+                view.setImageResource(R.drawable.my_homepage_woman);
+            }
+            break;
+            default:// 默认女
+                view.setImageResource(R.drawable.my_homepage_woman);
+                break;
+        }
+    }
+
+    /**
+     * 根据商户认证状态显示用户信息
+     *
+     * @param context
+     * @param businessAuthStatus 商户认证
+     * @param isSingle           是否单身
+     * @param birthPeriod        年龄段
+     * @param constellation      星座
+     * @param position           职位
+     * @param occupation         行业
+     * @param company            公司
+     * @return
+     */
+    public static String GetAuthStatusUserInfo(Context context, int businessAuthStatus, int isSingle, String birthPeriod, String constellation, String position, String occupation, String company) {
+        String userInfo = "";
+
+        // 是否商户认证
+        if (businessAuthStatus == 1) {
+            userInfo = company;
+        } else {
+            // 是否单身
+            String mIsSingle = isSingle == 1 ? context.getResources().getString(R.string.dynamic_single) : "";
+            // 年龄段
+            String mBirthPeriod = !TextUtils.isEmpty(birthPeriod) ? birthPeriod : "";
+            // 星座
+            String mConstellation = !TextUtils.isEmpty(constellation) ? constellation : "";
+            // 职位
+            String userPosition = !TextUtils.isEmpty(position) ? position : "";
+            // 行业
+            String userOccupation = !TextUtils.isEmpty(occupation) ? occupation : "";
+
+            String temp = !TextUtils.isEmpty(userPosition) ? userPosition : userOccupation;
+            String[] str = new String[]{mIsSingle, mBirthPeriod, mConstellation, temp};
+            for (int i = 0; i < str.length; i++) {
+                if (!TextUtils.isEmpty(str[i])) {
+                    if (i == 3) {
+                        userInfo = userInfo + str[i];
+                    } else {
+                        userInfo = userInfo + str[i] + " / ";
+                    }
+                }
+            }
+//
+//            // 用户信息
+//            userInfo = mIsSingle + mBirthPeriod + mConstellation + temp;
+        }
+
+        return userInfo;
+    }
+
     /**
      * 根据vip等级为昵称或者备注，添加字体颜色
      *

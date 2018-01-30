@@ -416,6 +416,8 @@
     <string name="chats_message">会话</string>
     <string name="chats_frends">朋友</string>
     <string name="chats_group">群组</string>
+    <string name="search">搜索</string>
+    <string name="dynamic_single">单身</string>
 
 
 </resources>
