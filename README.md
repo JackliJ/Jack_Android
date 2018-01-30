@@ -38,7 +38,8 @@ local.properties
  - 增加登录后的三联主页 2018年1月23日11:07:12
  - 登录界面跳转会话界面，会话加载数据 2018年1月24日15:35:58
  - 利用假数据搭建了新UI 2018年1月24日15:36:01
-
+ - 初始化环信 完成了基于环信的登录 详情见mgrimintegration_hx
+ - IMDataUtil为与数据层通讯的Util 2018年1月24日15:40:29
 ----------
 
 > 主要界面
@@ -47,6 +48,8 @@ local.properties
 <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_01.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_02.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_03.png"/>
 
 <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_04.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_05.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_06.png"/>
+
+<img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_07.png"/>     <img width="30%" height="30%" src="https://github.com/JackliJ/Jack_Android/blob/master/demoimgage/jack_img_08.png"/>
 
 
 
