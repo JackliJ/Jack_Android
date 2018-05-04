@@ -11,7 +11,8 @@ public class MMFrend {
     public int MFlogin_uid;//所属用户Id
     public int MFUid;//用户Id
     public int MFStoreId;//店铺id
-    public String MFUUName;//环信用户名
+    public String MFUUID;//第三方账号
+    public String MFUUName;//用户名
     public String MFAvatar;//用户头像
     public String MFUserName;//用户昵称
     public int MFUnionLevel;//商盟等级
@@ -28,6 +29,14 @@ public class MMFrend {
     public String MFBgImage;//脉友背景图片
     public int MFIsSingle;//是否单身  1.单身 2.非单身 3.保密
     public String PinYin;//脉友排序
+
+    public String getMFUUID() {
+        return MFUUID;
+    }
+
+    public void setMFUUID(String MFUUID) {
+        this.MFUUID = MFUUID;
+    }
 
     public int getMFlogin_uid() {
         return MFlogin_uid;

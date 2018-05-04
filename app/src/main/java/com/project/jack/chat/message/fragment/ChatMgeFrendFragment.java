@@ -26,7 +26,9 @@ import android.widget.TextView;
 import com.hyphenate.chat.EMMessage;
 import com.project.jack.R;
 import com.project.jack.chat.message.adapter.ChatMgeFrendListAdapter;
+import com.project.jack.chat.model.single.ChatMessageBean;
 import com.project.jack.chat.util.Constant;
+import com.project.jack.chat.util.ImIntentUtil;
 import com.project.jack.chat.weight.MgeToast;
 import com.project.jack.chat.weight.SideBar;
 import com.project.jack.ui.fragment.BaseFragment;
@@ -220,7 +222,20 @@ public class ChatMgeFrendFragment extends BaseFragment {
     private AdapterView.OnItemClickListener listOnitem = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            //创建会话
+            ChatMessageBean chatMessageBean = new ChatMessageBean();
+            //前面是当前登录用户的信息  这里写死
+            chatMessageBean.setChatUUID("ces3");
+            chatMessageBean.setChatUserID("12312321");
+            chatMessageBean.setChatUserName("测试3");
+            chatMessageBean.setChatUserNote(null);
+            chatMessageBean.setChatUserAvatar("http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=bbba1da0d60735fa91a546bdab612385/9825bc315c6034a84e7d073ac9134954082376e9.jpg");
+            chatMessageBean.setChatOtherUUID(mFrends.get(position).MFUUID);
+            chatMessageBean.setChatOtherUID(String.valueOf(mFrends.get(position).MFUid));
+            chatMessageBean.setChatOtherUserName(mFrends.get(position).MFUserName);
+            chatMessageBean.setChatOtherUserNote(mFrends.get(position).MFUserNote);
+            chatMessageBean.setChatOtherUserAvatar(mFrends.get(position).MFAvatar);
+            ImIntentUtil.StartIntentSession(chatMessageBean,mContext);
         }
     };
 

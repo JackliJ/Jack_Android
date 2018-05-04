@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -17,14 +18,20 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
+import com.hyphenate.chat.EMMessage;
 import com.project.jack.R;
 import com.project.jack.chat.base.ChatBaseActivity;
 import com.project.jack.chat.eventbus.ChatReceivedEventBus;
 import com.project.jack.chat.model.PreviewBean;
 import com.project.jack.chat.model.single.ChatMessageBean;
+import com.project.jack.chat.single.adapter.ChatMessageAdapter;
 import com.project.jack.chat.single.fragment.ChatSingleEmotiomFragment;
 import com.project.jack.chat.util.BroadCastReceiverConstant;
+import com.project.jack.chat.util.ChatItemClickListener;
 import com.project.jack.chat.util.Constant;
 
 import org.greenrobot.eventbus.EventBus;
@@ -37,7 +44,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import jack.project.com.imdatautil.IMDataUtil;
-import jack.project.com.imdatautil.util.IMConfig;
+import jack.project.com.imdatautil.IMSendUtil;
+import jack.project.com.imdatautil.model.MMessage;
+import jack.project.mgrimintegration_hx.callbcak.EMCallBack;
 
 /**
  * Create by www.lijin@foxmail.com on 2018/1/12 0012.
@@ -45,7 +54,7 @@ import jack.project.com.imdatautil.util.IMConfig;
  * 单聊 主界面
  */
 
-public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefreshLayout.OnRefreshListener,ChatSingleEmotiomFragment.FragmentListener{
+public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefreshLayout.OnRefreshListener,ChatSingleEmotiomFragment.FragmentListener,ChatItemClickListener {
 
     /**
      * 下拉刷新
@@ -110,6 +119,8 @@ public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefres
     ArrayList<PreviewBean> mDList;
     //存储大图路径的几个
     ArrayList<String> mPathList;
+    //展示数据的Adapter
+    private ChatMessageAdapter mAdapter;
     //大图的实体
     PreviewBean previewBean;
     //用于保存需要传递到大图的下标
@@ -164,6 +175,7 @@ public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefres
         //注册home键
         mFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
         registerReceiver(mReceiver, mFilter);
+        initRefresh(mChatMessageBean.getChatOtherUUID(),false,false);
     }
 
     /**
@@ -267,6 +279,11 @@ public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefres
         mEmotionMainFragment.isShowInterceptBackPress();
     }
 
+
+
+
+
+
     /**
      * 下拉刷新(google)
      */
@@ -282,6 +299,152 @@ public class ChatMessageActivity extends ChatBaseActivity implements SwipeRefres
      */
     @Override
     public void thank(String text, String UserName) {
+        Toast.makeText(mContext, "发送：" + text, Toast.LENGTH_SHORT).show();
+        IMSendUtil.SendText(Constant.config, text, mChatMessageBean.getChatUUID(), mChatMessageBean.getChatUserID(),
+                mChatMessageBean.getChatUserName(), mChatMessageBean.getChatUserAvatar(), mChatMessageBean.getChatUserVipLevel(),
+                mChatMessageBean.getChatUserAuthStatus(), mChatMessageBean.getChatUserBusinessAuthStatus(), mChatMessageBean.getChatUserBgImage(),
+                mChatMessageBean.getChatOtherUID(), mChatMessageBean.getChatOtherUserName(), mChatMessageBean.getChatOtherUserAvatar(), mChatMessageBean.getChatOtherVipLevel(),
+                mChatMessageBean.getChatOtherAuthStatus(), mChatMessageBean.getChatOtherBusinessAuthStatus(), mChatMessageBean.getChatOtherBgImage(), null, new EMCallBack() {
+                    @Override
+                    public void onSuccessSend() {
+                        //更新发送状态
+                    }
 
+                    @Override
+                    public void onErrorSend(int a, String b) {
+                        //更新发送失败的状态
+                    }
+
+                    @Override
+                    public void onProgressSend(int a, String b) {
+
+                    }
+                });
+    }
+
+    @Override
+    public void onItemClick(View view, int postion) {
+
+    }
+
+    @Override
+    public void onLongClick(View view, int position) {
+
+    }
+
+    //会话数据存放实体
+    List<MMessage> messages;
+    //设置一页展示的数据
+    int PageSize = 20;
+    //用于判断定位的方式
+    int mPageSize = 10;
+    /**
+     * 刷新数据
+     *
+     * @param mHxId         第三方ID
+     * @param isRefresh     是否为下拉刷新
+     * @param isSendRefresh 是否为发送刷新
+     */
+    private void initRefresh(String mHxId, boolean isRefresh, boolean isSendRefresh) {
+        //内存地址是否为null 在本地地址上进行clear
+        if (messages != null) {
+            messages.clear();
+        } else {
+            messages = new ArrayList<>();
+        }
+        if (isRefresh) {
+            PageSize = PageSize + PageSize;
+        }
+        //获取当前用户的会话数据
+        messages = IMDataUtil.getSessionPersonal(Constant.config,mHxId);
+        if (messages != null) {
+            //查询会话数据  添加到messages
+//            messages.addAll(conversation.getAllMessages());
+            //去加载 或者 刷新数据
+            if (messages.size() > 0 && messages != null) {
+                if (mAdapter != null) {
+                    //判断RecyclerView 是否在底部
+                    if (!vCRecyclerview.canScrollVertically(1)) {
+                        //当数据超过一页的时候 将默认加载到底部的方式变更 经过测试  最短为8条 延长到10条
+                        if (messages.size() > mPageSize) {
+                            linearLayoutManager = new LinearLayoutManager(mContext);
+                            linearLayoutManager.setStackFromEnd(true);
+                            vCRecyclerview.setLayoutManager(linearLayoutManager);
+                            ((DefaultItemAnimator) vCRecyclerview.getItemAnimator()).setSupportsChangeAnimations(false);
+                        } else {
+                            //使用Position定位的方式加载到底部 规避商品咨询无法在顶部的问题
+                            vCRecyclerview.smoothScrollToPosition(messages.size());
+                            ((DefaultItemAnimator) vCRecyclerview.getItemAnimator()).setSupportsChangeAnimations(false);
+                        }
+                    } else {
+                        if (isSendRefresh) {
+                            //要定位到最后一条数据
+                            if (!isRefresh) {
+                                //当数据超过一页的时候 将默认加载到底部的方式变更 经过测试  最短为8条 延长到10条
+                                if (messages.size() > mPageSize) {
+                                    linearLayoutManager = new LinearLayoutManager(mContext);
+                                    linearLayoutManager.setStackFromEnd(true);
+                                    vCRecyclerview.setLayoutManager(linearLayoutManager);
+                                    ((DefaultItemAnimator) vCRecyclerview.getItemAnimator()).setSupportsChangeAnimations(false);
+                                } else {
+                                    //使用Position定位的方式加载到底部 规避商品咨询无法在顶部的问题
+                                    vCRecyclerview.smoothScrollToPosition(messages.size());
+                                    ((DefaultItemAnimator) vCRecyclerview.getItemAnimator()).setSupportsChangeAnimations(false);
+                                }
+                            }
+                        }
+                    }
+                    //刷新数据
+                    mAdapter.notifyDataSetChanged();
+                    vSwipeRefresh.setRefreshing(false);
+                } else {
+                    mAdapter = new ChatMessageAdapter(mContext, messages);
+                    mAdapter.setOnItemClickListener(this);
+                    ChatMessageActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            //去加载数据
+                            if (messages.size() > mPageSize) {
+                                linearLayoutManager = new LinearLayoutManager(mContext);
+                                linearLayoutManager.setStackFromEnd(true);
+                                vCRecyclerview.setLayoutManager(linearLayoutManager);
+                                ((DefaultItemAnimator) vCRecyclerview.getItemAnimator()).setSupportsChangeAnimations(false);
+                                vCRecyclerview.setAdapter(mAdapter);
+                            } else {
+                                linearLayoutManager = new LinearLayoutManager(mContext);
+                                vCRecyclerview.setLayoutManager(linearLayoutManager);
+                                ((DefaultItemAnimator) vCRecyclerview.getItemAnimator()).setSupportsChangeAnimations(false);
+                                vCRecyclerview.setAdapter(mAdapter);
+                                vCRecyclerview.smoothScrollToPosition(messages.size());
+                            }
+                        }
+                    });
+                }
+            } else {
+                //在null的情况下去加载数据
+                mAdapter = new ChatMessageAdapter(mContext, messages);
+                mAdapter.setOnItemClickListener(this);
+                ChatMessageActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (messages.size() > mPageSize) {
+                            linearLayoutManager = new LinearLayoutManager(mContext);
+                            linearLayoutManager.setStackFromEnd(true);
+                            vCRecyclerview.setLayoutManager(linearLayoutManager);
+                            vCRecyclerview.setAdapter(mAdapter);
+                        } else {
+                            linearLayoutManager = new LinearLayoutManager(mContext);
+                            vCRecyclerview.setLayoutManager(linearLayoutManager);
+                            vCRecyclerview.setAdapter(mAdapter);
+                            vCRecyclerview.smoothScrollToPosition(messages.size());
+                        }
+                    }
+                });
+            }
+        } else {
+            if (vSwipeRefresh != null) {
+                vSwipeRefresh.setRefreshing(false);
+            }
+        }
     }
 }

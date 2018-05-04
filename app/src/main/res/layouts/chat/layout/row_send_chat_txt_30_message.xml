@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/tv_message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text=""/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/rl_message_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:padding="10dp"
+            android:layout_toLeftOf="@+id/iv_avatar"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:id="@+id/tv_message_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/msg_status_li"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toLeftOf="@id/rl_message_bg"
+            android:gravity="center"
+            android:layout_marginRight="5dp"
+
+            android:visibility="gone">
+        <ImageView
+                android:id="@+id/msg_status_error"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/em_msg_state_fail_resend"
+                android:visibility="gone"/>
+
+            <ProgressBar
+                android:id="@+id/msg_status_progress"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_alignParentTop="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/default_picture"/>
+    </RelativeLayout>
+</LinearLayout>

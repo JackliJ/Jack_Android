@@ -1,12 +1,15 @@
 package jack.project.com.imdatautil;
 
 import android.content.Context;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
+import com.hyphenate.chat.EMMessageBody;
+import com.hyphenate.chat.EMTextMessageBody;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +24,9 @@ import jack.project.com.imdatautil.callback.ImMessageCallback;
 import jack.project.com.imdatautil.model.MMFrend;
 import jack.project.com.imdatautil.model.MMSession;
 import jack.project.com.imdatautil.model.MMessage;
+import jack.project.com.imdatautil.model.MMessageBody;
 import jack.project.com.imdatautil.model.body.MMessageTxTBody;
+import jack.project.com.imdatautil.model.body.MMessageVoiceBody;
 import jack.project.com.imdatautil.util.Constent;
 import jack.project.com.imdatautil.util.IMConfig;
 import jack.project.mgrimintegration_hx.util.IMInitializeUtil_HX;
@@ -36,32 +41,35 @@ public class IMDataUtil {
 
     /**
      * 用户登录
-     *
+     * <p>
      * 需要将用户基本信息进行存储
+     *
      * @param config
-     * @param account    账户
-     * @param password   密码
+     * @param account  账户
+     * @param password 密码
      */
-    public static void Login(IMConfig.ChatEPackageType config, String account, String password, ImLoginCallback imLoginCallback){
-        switch (config){
+    public static void Login(IMConfig.ChatEPackageType config, String account, String password, ImLoginCallback imLoginCallback) {
+        switch (config) {
             case IM_HuanXin:
-                IMInitializeUtil_HX.Login(account,password,imLoginCallback);
+                IMInitializeUtil_HX.Login(account, password, imLoginCallback);
                 break;
             case IM_RongYun:
+
                 break;
         }
     }
 
     /**
      * 新消息回调接口
+     *
      * @param callback
      */
-    public static void MessageListener(IMConfig.ChatEPackageType config,ImMessageCallback callback){
-        switch (config){
+    public static void MessageListener(IMConfig.ChatEPackageType config, ImMessageCallback callback) {
+        switch (config) {
             case IM_HuanXin:
                 //这里实现环信的回调方法
                 MMessage mMessage = new MMessage();
-                MMessageTxTBody mMessageTxTBody = (MMessageTxTBody)mMessage.MsgBody;
+                MMessageTxTBody mMessageTxTBody = (MMessageTxTBody) mMessage.MsgBody;
                 mMessageTxTBody.setContent("sss");
                 mMessage.setMsgBody(mMessageTxTBody);
                 break;
@@ -71,15 +79,126 @@ public class IMDataUtil {
         }
     }
 
+
     /**
-     * 获取会话列表
-     * @param config   数据来源
+     * 获取当前用户与某人的会话记录
+     *
+     * @param config  数据来源方向
+     * @param TagIMID 会话ID
      * @return
      */
-    public static List<MMSession> getSessionList(IMConfig.ChatEPackageType config){
+    public static List<MMessage> getSessionPersonal(IMConfig.ChatEPackageType config, String TagIMID) {
+        final List<MMessage> mEssageList = new ArrayList<>();
+        switch (config) {
+            case IM_HuanXin:
+                //获取当前用户的会话数据
+                EMConversation conversation = EMClient.getInstance().chatManager().getConversation(TagIMID);
+                if (conversation != null) {
+                    List<EMMessage> message = conversation.getAllMessages();
+                    MMessage mMessage = new MMessage();
+                    for (int i = 0; i < message.size(); i++) {
+                        mMessage.setMsgUID(message.get(i).getMsgId());
+                        mMessage.setMsgUName(message.get(i).getUserName());
+                        mMessage.setMsgType(getMsgType(message.get(i).getType()));
+                        mMessage.setMsgID(message.get(i).getMsgId());
+                        mMessage.setMsgChatType(getMsgChatType(message.get(i).getChatType()));
+                        mMessage.setMsgDirect(getMsgDirect(message.get(i).direct()));
+                        mMessage.setMsgBody(getMsgBody(message.get(i).getBody(),message.get(i)));
+                        mMessage.setMsgTime(message.get(i).getMsgTime());
+                    }
+
+                }
+                return mEssageList;
+            case IM_RongYun:
+                return mEssageList;
+        }
+        return mEssageList;
+    }
+
+    public static MMessageBody getMsgBody(EMMessageBody body,EMMessage message){
+        switch (message.getType()){
+            case TXT:
+                MMessageTxTBody mMessageTxTBody = new MMessageTxTBody();
+                mMessageTxTBody.setContent(body.toString());
+                return mMessageTxTBody;
+            case IMAGE:
+                break;
+            case VIDEO:
+                break;
+            case VOICE:
+                break;
+        }
+        return null;
+    }
+
+    /**
+     * 将环信的聊天数据类型转换为通用数据类型
+     * @param type
+     * @return
+     */
+    public static MMessage.Type getMsgType(EMMessage.Type type){
+        switch (type){
+            case FILE:
+                return MMessage.Type.FILE;
+            case CMD:
+                return MMessage.Type.CMD;
+            case IMAGE:
+                return MMessage.Type.IMAGE;
+            case LOCATION:
+                return MMessage.Type.LOCATION;
+            case VIDEO:
+                return MMessage.Type.VIDEO;
+            case VOICE:
+                return MMessage.Type.VOICE;
+            case TXT:
+                return MMessage.Type.TXT;
+        }
+        return null;
+    }
+
+    /**
+     * 将环信的会话数据类型转换为通用数据类型
+     * @param type
+     * @return
+     */
+    public static MMessage.ChatType getMsgChatType(EMMessage.ChatType type){
+        switch (type){
+            case ChatRoom:
+                return MMessage.ChatType.ChatRoom;
+            case Chat:
+                return MMessage.ChatType.Chat;
+            case GroupChat:
+                return MMessage.ChatType.GroupChat;
+        }
+        return null;
+    }
+
+    /**
+     * 根据环信的接收方类型 返回通用的接收方类型
+     * @param direct
+     * @return
+     */
+    public static MMessage.Direct getMsgDirect(EMMessage.Direct direct){
+        switch (direct){
+            case SEND:
+                return MMessage.Direct.SEND;
+            case RECEIVE:
+                return MMessage.Direct.RECEIVE;
+        }
+        return  null;
+    }
+
+
+    /**
+     * 获取会话列表
+     *
+     * @param config 数据来源
+     * @return
+     */
+    public static List<MMSession> getSessionList(IMConfig.ChatEPackageType config) {
         List<MMSession> mMessages = new ArrayList<>();
         MMSession mmSession;
-        switch (config){
+        switch (config) {
             case IM_HuanXin:
 //                MMSession mmSession;
 //                for (int i = 0;i<3;i++){
@@ -194,6 +313,7 @@ public class IMDataUtil {
 
     /**
      * 根据ID获取字段
+     *
      * @param uid
      * @return
      */
@@ -215,6 +335,7 @@ public class IMDataUtil {
 
     /**
      * 将消息数据按照时间排序  最新的消息在最上面
+     *
      * @param list
      */
     private static void ListSort(List<MMSession> list) {
@@ -240,6 +361,7 @@ public class IMDataUtil {
         });
     }
 
+
     public static MMessage.ChatType getChatType(EMMessage message) {
         if (message.getChatType().toString().equals(EMMessage.ChatType.Chat.toString())) {
             return MMessage.ChatType.Chat;
@@ -251,25 +373,27 @@ public class IMDataUtil {
 
     /**
      * 根据第三方ID删除某个会话
+     *
      * @param UUID
      */
-    public static void DeleteSession(IMConfig.ChatEPackageType config,String UUID){
+    public static void DeleteSession(IMConfig.ChatEPackageType config, String UUID) {
 
     }
 
     /**
      * 获取所有好友数据，根据字母进行排序，PinYin字段
      */
-    public static List<MMFrend> GetAllByPYAsc(IMConfig.ChatEPackageType config,Context context){
+    public static List<MMFrend> GetAllByPYAsc(IMConfig.ChatEPackageType config, Context context) {
         List<MMFrend> mmFrends = new ArrayList<>();
-        switch (config){
+        switch (config) {
             case IM_HuanXin:
                 MMFrend mmFrend;
-                for (int i = 0;i<2;i++){
+                for (int i = 0; i < 2; i++) {
                     mmFrend = new MMFrend();
-                    if(i == 0){
+                    if (i == 0) {
                         mmFrend.setMFlogin_uid(1);
                         mmFrend.setMFUid(1);
+                        mmFrend.setMFUUID("ces1");
                         mmFrend.setMFStoreId(1);
                         mmFrend.setMFUUName("ces1");
                         mmFrend.setMFAvatar("http://d.hiphotos.baidu.com/baike/pic/item/b8389b504fc2d56236183555e41190ef76c66c72.jpg");
@@ -289,10 +413,11 @@ public class IMDataUtil {
                         mmFrend.setMFIsSingle(1);
                         mmFrend.setPinYin("J");
 
-                    }else{
+                    } else {
                         mmFrend.setMFlogin_uid(1);
                         mmFrend.setMFUid(1);
                         mmFrend.setMFStoreId(1);
+                        mmFrend.setMFUUID("ces2");
                         mmFrend.setMFUUName("ces2");
                         mmFrend.setMFAvatar("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517221123215&di=51eb8058e2eddb94bbc9b87f0a310010&imgtype=0&src=http%3A%2F%2Fwww.chinafranchiseexpo.com%2Fphp%2Ffiles%2Flogo-1-01.jpg");
                         mmFrend.setMFUserName("测试2");
@@ -322,15 +447,15 @@ public class IMDataUtil {
 
     /**
      * 根据条件模糊搜索好友
-     * @param context             上下文
-     * @param keyContent          搜索条件
+     *
+     * @param context    上下文
+     * @param keyContent 搜索条件
      * @return
      */
-    public static List<MMFrend> GetVagueQueryFrend(IMConfig.ChatEPackageType config,Context context, String keyContent) {
+    public static List<MMFrend> GetVagueQueryFrend(IMConfig.ChatEPackageType config, Context context, String keyContent) {
         List<MMFrend> mmFrends = new ArrayList<>();
         return mmFrends;
     }
-
 
 
 }

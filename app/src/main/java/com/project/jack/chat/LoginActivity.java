@@ -69,7 +69,12 @@ public class LoginActivity extends ChatBaseActivity implements View.OnClickListe
 
                         @Override
                         public void onFailure() {
-
+                            LoginActivity.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    MgeToast.showErrorToast(LoginActivity.this,"login is failure");
+                                }
+                            });
                         }
                     });
                 }else{

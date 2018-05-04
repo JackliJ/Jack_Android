@@ -1,5 +1,7 @@
 package jack.project.com.imdatautil.model;
 
+import com.hyphenate.chat.adapter.message.EMAMessage;
+
 import java.io.Serializable;
 
 /**
@@ -14,10 +16,23 @@ public class MMessage implements Serializable {
     public long MsgTime;//消息被创建的时间
     public String MsgUID;//创建消息的人ID
     public String MsgUName;//创建消息的人名称
+    public String MsgStringAttribute;//扩展参数
     public MMessageBody MsgBody;
     public MMessage.Type MsgType;//消息类型
     public MMessage.ChatType MsgChatType;//会话类型
     public MMessage.Direct MsgDirect;//消息方向
+
+    public String getMsgStringAttribute(String var1, String var2) {
+        if(var1 != null && !var1.equals("")) {
+            return var1.toString();
+        } else {
+            return var2;
+        }
+    }
+
+    public void setMsgStringAttribute(String msgStringAttribute) {
+        MsgStringAttribute = msgStringAttribute;
+    }
 
     public MMessageBody getMsgBody() {
         return MsgBody;

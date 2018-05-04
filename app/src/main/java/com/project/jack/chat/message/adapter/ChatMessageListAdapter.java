@@ -1,6 +1,7 @@
 package com.project.jack.chat.message.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMMessage;
 import com.project.jack.R;
 import com.project.jack.chat.util.ApplicationUtils;
@@ -469,6 +472,25 @@ public class ChatMessageListAdapter extends RecyclerView.Adapter<ChatMessageList
         @Optional
         @Override
         public void onClick(View v) {
+            if (mListener != null) {
+                mListener.onItemClick(v, getPosition());
+            }
+            switch (v.getId()) {
+                case R.id.rl_frend_system:
+                    //系统消息
+                    break;
+                case R.id.rl_frend_circle:
+                    // 脉友圈
+                    break;
+                case R.id.rl_secretary:
+                    //小秘书
+                    break;
+                case R.id.rl_search:
+                    //搜索
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

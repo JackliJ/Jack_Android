@@ -1,12 +1,15 @@
 package com.project.jack.chat.util;
 
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by www.lijin@foxmail.com on 2016/6/23.
@@ -14,6 +17,27 @@ import java.util.Date;
  * 时间帮助类
  */
 public class TimeUtils {
+
+    /**
+     * 2013-01-01 00:00:00
+     */
+    public static final String TIME_STYLE_DATE_TIME_1 = "yyyy-MM-dd HH:mm:ss";
+    /**
+     * 2013-01-01 00:00
+     */
+    public static final String TIME_STYLE_DATE_TIME_2 = "yyyy-MM-dd HH:mm";
+    /**
+     * 00:00:00
+     */
+    public static final String TIME_STYLE_DATE_TIME_3 = "HH:mm:ss";
+    /**
+     * 00:00
+     */
+    public static final String TIME_STYLE_DATE_TIME_4 = "HH:mm";
+    /**
+     * 2013-01-01
+     */
+    public static final String TIME_STYLE_DATE_TIME_5 = "yyyy-MM-dd";
 
     TimerReclen timerReclen;
     public TimeUtils(TimerReclen timerReclen) {
@@ -185,6 +209,78 @@ public class TimeUtils {
         }
         String times = CalendarUtil.ConverToString(date);
         return times;
+    }
+
+    /**
+     * 由给定过去的时间计算距离现在的时间
+     *
+     * @param date 给定的时间,必须是已过去的时间
+     * @return
+     */
+    public static String distanceBeforeNow(Date date, Context context) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return distanceBeforeNow(cal, context);
+    }
+
+    /**
+     * 由给定过去的时间计算距离现在的时间
+     *
+     * @param date 给定的时间,必须是已过去的时间
+     * @return
+     */
+    public static String distanceBeforeNow(Calendar date, Context context) {
+
+        Calendar now = Calendar.getInstance();
+
+        int year = now.get(Calendar.YEAR) - date.get(Calendar.YEAR);
+        if (year < 0)
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_1);
+        else if (year > 0)
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_5);
+
+        int day = now.get(Calendar.DAY_OF_YEAR)
+                - date.get(Calendar.DAY_OF_YEAR);
+        if (day < 0)
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_1);
+        else if (day > 1)
+//            return formats(date.getTime(), " MM" + context.getResources().getString(R.string.chat_month) + "dd" + context.getString(R.string.chat_day) + "HH:mm");
+            return formats(date.getTime(), "MM-dd HH:mm");
+        else if (day == 1)
+//            return formats(date.getTime(), context.getResources().getString(R.string.chat_yesterday) + "HH:mm");
+            return formats(date.getTime(), "HH:mm");
+        int hour = now.get(Calendar.HOUR_OF_DAY)
+                - date.get(Calendar.HOUR_OF_DAY);
+        if (hour < 0)
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_1);
+        else if (hour > 0)/*&& hour <= 4)
+            return hour + "小时前";
+        else if (hour > 4)*/
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_4);
+
+        int minute = now.get(Calendar.MINUTE) - date.get(Calendar.MINUTE);
+        if (minute < 0)
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_1);
+        else if (minute > 0)
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_4);//minute + "分钟前";
+
+        int second = now.get(Calendar.SECOND) - date.get(Calendar.SECOND);
+        if (second < 0)
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_1);
+        else
+            return formats(date.getTime(), TIME_STYLE_DATE_TIME_4);//"刚刚";
+
+    }
+
+    /**
+     * 根据格式返回日期
+     *
+     * @param style
+     * @return
+     */
+    public static synchronized String formats(Date date, String style) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(style, Locale.ENGLISH);
+        return simpleDateFormat.format(date);
     }
 
     /**
